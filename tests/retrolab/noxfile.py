@@ -15,7 +15,7 @@ requirements = dependencies.pop(-1).get("pip")
 
 def install_environment(session):
     """Install conda dependencies - instead of creating a conda env through
-    conda env create -f we install depency into the session venv.
+    conda env create -f we install dependency into the session venv.
     This is faster than recreating, updating or pruning the environment using
     conda env...
 
