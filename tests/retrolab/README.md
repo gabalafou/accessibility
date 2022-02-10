@@ -4,6 +4,7 @@
 
 To run the tests in this directory you need the following pre-requisites:
 
+- mamba
 - python > 3.7
 - nox
 - pyyaml
