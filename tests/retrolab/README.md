@@ -22,7 +22,7 @@ python3 -m  pip install nox pyyaml
     cd tests/retrolab
     ```
 
-2. Run the test with snox from the command line:
+2. Run the test with nox from the command line:
 
     ```bash
     nox -s a11y_tests
