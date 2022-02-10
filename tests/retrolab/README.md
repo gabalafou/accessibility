@@ -25,7 +25,7 @@ python3 -m  pip install nox pyyaml
 2. Run the test with snox from the command line:
 
     ```bash
-    nox -s a11_tests
+    nox -s a11y_tests
     ```
 
  If you are invoking the nox command for the first time, this may take while to install the dependencies and run the tests.
