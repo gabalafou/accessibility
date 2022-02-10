@@ -2,10 +2,13 @@ name: retrolab-test
 channels:
   - conda-forge
 dependencies:
+  - nodejs=16.*
+  - yarn
   - matplotlib
   - ipywidgets
   - ipython
   - numpy
   - scipy 
+  - pip
   - pip:
     - git+https://github.com/jupyterlab/retrolab.git@v0.3.19#egg=retrolab
