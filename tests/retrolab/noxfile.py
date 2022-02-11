@@ -10,6 +10,8 @@ ENV_FILE = TEST_DIR / "environment.yml"
 # parse the env file
 environment = safe_load(ENV_FILE.read_text())
 dependencies = environment.get("dependencies")
+# note this assumes that the last line is a pip package
+# maybe can be improved in the future, but it works for now
 requirements = dependencies.pop(-1).get("pip")
 
 
