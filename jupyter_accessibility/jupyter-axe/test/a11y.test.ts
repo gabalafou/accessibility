@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 import { injectAxe, getViolations } from "axe-playwright";
-import { test } from "@jupyterlab/galata";
+import { test } from "./fixtures";
 import { createHtmlReport } from "axe-html-reporter";
 import fs from "fs";
 import * as path from 'path';
@@ -65,11 +65,26 @@ test.describe("accessibility checks", () => {
         page,
         tmpPath,
       }, testInfo) => {
-        await page.notebook.openByPath(`${tmpPath}/${nb}`);
+        await page.goto(`tree/${tmpPath}/${LORENZ}`);
+        // the following helper only works for jupyterlab not retrolab
+        // await page.notebook.openByPath(`${tmpPath}/${nb}`);
 
         if (exec) {
-          await page.notebook.runCellByCell({})
+          await page.notebook.run()
         }
+
+        // playwright records the browser window while running, and then uploads
+        // the video with the test results to help with debugging. So here we
+        // scroll to the bottom of the notebook so that if somebody needs to
+        // watch the video, they can see the whole notebook from beginning to
+        // end.
+        await page.evaluate(() => {
+          const el = document.querySelector(".jp-NotebookPanel-notebook");
+          const pres = el.querySelectorAll("pre");
+          const lastPre = pres[pres.length - 1];
+          lastPre.scrollIntoView();
+        });
+
         const violations = await axe(page, testInfo)
 
         await expect(violations).toEqual([]);
