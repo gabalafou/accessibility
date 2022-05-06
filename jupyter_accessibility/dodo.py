@@ -38,15 +38,19 @@ def task_playwright(prefix=TARGET / ".env", target=TARGET):
         uptodate=[target.exists()],
     )
     yield dict(
-        name="install:yarn",
-        actions=[do(f"{conda} yarn install", cwd=target)],
-        # targets  yark lock
-    )
-    yield dict(
         name="install:python",
         actions=[do(f"{conda} pip install -r requirements.txt", cwd=target)],
     )
-    yield dict(name="test", actions=[do(f"{conda} npx playwright test", cwd=target)])
+    yield dict(
+        name="install:yarn",
+        actions=[do(f"{conda} jlpm install", cwd=target)],
+        # targets  yark lock
+    )
+    yield dict(
+        name="install:playwright",
+        actions=[do(f"{conda} jlpm playwright install chromium", cwd=target)],
+    )
+    yield dict(name="test", actions=[do(f"{conda} jlpm test", cwd=target)])
 
 
 def do(*args, cwd=WHERE, **kwargs):
