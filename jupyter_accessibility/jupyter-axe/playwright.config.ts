@@ -51,16 +51,7 @@ const config: PlaywrightTestConfig = {
 
     acceptDownloads: true,
 
-    video: "retain-on-failure",
-
-    axeOptions: {
-      runOnly: {
-        type: "tag",
-        // all tags and standards listed here:
-        // https://www.deque.com/axe/core-documentation/api-documentation/#axe-core-tags
-        values: ["wcag2a", "best-practice"],
-      },
-    },
+    video: "retain-on-failure"
   },
 
   /* Configure projects for major browsers */
